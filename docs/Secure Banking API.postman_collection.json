@@ -1,0 +1,261 @@
+{
+  "info": {
+    "_postman_id": "9026a6ec-0487-43af-875e-80b94416f0b1",
+    "name": "Secure Banking API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "47687167",
+    "_collection_link": "https://go.postman.co/collection/47687167-9026a6ec-0487-43af-875e-80b94416f0b1?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "AUTH ROUTES",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"ratanapawar016@gmail.com\",\r\n  \"password\": \"test123\",\r\n  \"name\": \"Ratana Pawar\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://secure-banking-api.onrender.com/api/auth/register",
+              "protocol": "https",
+              "host": [
+                "secure-banking-api",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"ratanapawar016@gmail.com\",\r\n  \"password\": \"test123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://secure-banking-api.onrender.com/api/auth/login",
+              "protocol": "https",
+              "host": [
+                "secure-banking-api",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/auth/logout",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "auth",
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "ACCOUNT ROUTES",
+      "item": [
+        {
+          "name": "Create Account",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://secure-banking-api.onrender.com/api/accounts/",
+              "protocol": "https",
+              "host": [
+                "secure-banking-api",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "accounts",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Accounts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://secure-banking-api.onrender.com/api/accounts/",
+              "protocol": "https",
+              "host": [
+                "secure-banking-api",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "accounts",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Account Balance",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://secure-banking-api.onrender.com/api/accounts/balance/69f083c8449579871704be7d",
+              "protocol": "https",
+              "host": [
+                "secure-banking-api",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "accounts",
+                "balance",
+                "69f083c8449579871704be7d"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "TRANSACTION ROUTES",
+      "item": [
+        {
+          "name": "Transfer Money (MAIN API)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"fromAccount\": \"69f083c8449579871704be7d\",\r\n  \"toAccount\": \"69f08250449579871704be79\",\r\n  \"amount\": 100,\r\n  \"idempotencyKey\": \"txn-ratana-001\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://secure-banking-api.onrender.com/api/transactions/",
+              "protocol": "https",
+              "host": [
+                "secure-banking-api",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api",
+                "transactions",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
