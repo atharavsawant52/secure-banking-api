@@ -1,4 +1,27 @@
 const accountModel = require("../models/account.model");
+const ledgerModel = require("../models/ledger.model");
+const transactionModel = require("../models/transaction.model");
+
+const INITIAL_ACCOUNT_BALANCE = 500;
+
+async function addInitialAccountBalance(account) {
+  const transaction = await transactionModel.create({
+    fromAccount: account._id,
+    toAccount: account._id,
+    amount: INITIAL_ACCOUNT_BALANCE,
+    idempotencyKey: `initial-balance-${account._id}`,
+    status: "COMPLETED",
+  });
+
+  await ledgerModel.create({
+    account: account._id,
+    amount: INITIAL_ACCOUNT_BALANCE,
+    transaction: transaction._id,
+    type: "CREDIT",
+  });
+
+  return transaction;
+}
 
 async function createAccountController(req, res) {
   const user = req.user;
@@ -7,8 +30,11 @@ async function createAccountController(req, res) {
     user: user._id,
   });
 
+  await addInitialAccountBalance(account);
+
   res.status(201).json({
     account,
+    openingBalance: INITIAL_ACCOUNT_BALANCE,
   });
 }
 
